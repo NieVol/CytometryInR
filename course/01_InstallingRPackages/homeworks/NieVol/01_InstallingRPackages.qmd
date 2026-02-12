@@ -1,0 +1,65 @@
+---
+title: "Week 1: Installing R Packages"
+author: "Nienke Vollebregt"
+date: 12-02-2026
+---
+
+There are different repositories which store R packages. For biology purposes, the most used is Bioconductor.  
+
+```{r}
+#If you want to have the information for the function you are using, put a ? in front of the function. In positron you can also hover over the function name where it shows you the help file. 
+#?sessionInfo()
+sessionInfo()
+```
+
+Start by installing packages from CRAN, the biggest R package repository. These include the tidyverse packages. 
+CRAN has specific installation commands. 
+
+# Installing packages from CRAN
+```{r}
+#install.packages is the function to get packages from CRAN. To install, you need to put the quotation marks around the name of the package you want to install. 
+# install.packages("dplyr")
+# If a package has been installed succesfully, you need to load it into the local environment using the library() function. Here you do not need the quotation marks around the name of the package. This attaches it to the environment.
+library(dplyr)
+?dplyr
+# You can also detach or remove a package again. remove.packages()
+```
+
+When you use the code needed to download a package from CRAN for a package that is available on Bioconductor, you will get a specific output. 
+For installing from Bioconductor you need this code.
+
+# Installing packages from Bioconductor 
+
+```{r}
+#install.packages("BiocManager") #you first need to install a package from CRAN that will allow us to install Bioconductor packages. 
+library(BiocManager) # load into local environment
+#install("PeacoQC") # install() is the function needed to install packages from Bioconductor.
+library(PeacoQC) # you still need to load into local environment
+```
+
+# Installing from GitHub
+
+R packages from GitHub are located in a persons account. Always double check the last date of updating the package, it can be that the package from GitHub has been abandoned. 
+
+```{r}
+#install.packages("remotes") # you first need to install the remotes package from CRAN
+library(remotes) # attach to local environment
+# We will install the flowSpectrum package today, made by GitHub user hally166. you need the name of the user and the name of the package repository. Input into install_github() function from remotes package. 
+#install_github("hally166/flowSpectrum")
+```
+
+# Troubleshooting install errors
+
+First spot the ERROR sign in the console and read what is behind it. 
+R also gives you suggestions for how to fix the error. 
+
+# Installing specific package versions
+
+When installing packages, there will always be a version number behind it. This allows you to go back in time to when a package was working in a certain way if you want to. 
+The way to do this changes from the location of the package. However, you always use the remotes() function. 
+
+```{r}
+packageVersion("PeacoQC") # function to check which version of a package you currently are using
+citation("PeacoQC") # gives you the information needed to cite the package in a publication. also includes the version.
+```
+
