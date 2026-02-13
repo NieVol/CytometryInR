@@ -2,6 +2,7 @@
 title: "Week 1: Installing R Packages"
 author: "Nienke Vollebregt"
 date: 12-02-2026
+format: html
 ---
 
 There are different repositories which store R packages. For biology purposes, the most used is Bioconductor.  
@@ -63,3 +64,79 @@ packageVersion("PeacoQC") # function to check which version of a package you cur
 citation("PeacoQC") # gives you the information needed to cite the package in a publication. also includes the version.
 ```
 
+# Your Turn: installing specific packages
+
+```{r}
+#| eval: FALSE
+install.packages("purrr")
+install("flowCore")
+install("flowWorkspace")
+install.packages("stringr")
+install.packages("ggplot2")
+install("ggcyto")
+install.packages("tidyr")
+install("openCyto")
+install("FlowSOM")
+install.packages("xml2")
+install_github("saeyslab/CytoNorm")
+install.packages(("lubridate"))
+install.packages("httr2")
+install("flowGate")
+install.packages("devtools")
+install.packages("plotly")
+install_github("biosurf/cyCombine")
+install("CytoML")
+install.packages("Rtsne")
+install.packages("uwot")
+```
+
+# Take-home Problems
+
+## Problem 1
+**We installed PeacoQC during this session, but we didn’t have time to explore what functions are present within the package. Using what you have learned about accessing documentation, figure out and list what functions it contains.**
+
+```{r}
+?PeacoQC() 
+# website https://www.bioconductor.org/packages/release/bioc/html/PeacoQC.html
+```
+
+From accesing the R documentation with the above code, you can see that PeacoQC functions as peak-based detection of high quality cytometry data. It "will determine peaks on the channels in the flowframe. Then it will remove anomalies caused by e.g. clogs, changes in speed etc. by using an IsolationTree and/or the MAD method."
+
+It contains
+
+## Problem 2
+**Take a closer look at the list of Bioconductor cytometry packages. Report back on how many there are currently in Bioconductor, the author/maintainer with the most contributed cytometry R packages, and a couple packages that you would be interested in exploring more in-depth later in the course.**
+
+When looking at the [website](https://www.bioconductor.org/packages/release/BiocViews.html#___FlowCytometry) you can see there are 69 entries for FlowCytometry packages. 
+
+The author/maintainer with the most contributed cytometry R packages is Mike Jiang.
+
+Packages I want to explore more in-depth later in the course are flowGraph, flowCHIC, flowTRANS, flowStats, flowCyBar, flowCut, GateFinder, and CytoPipeline.
+
+## Problem 3
+**There is another way to install R packages, using the newer pak package. Positron uses this when installing suggested dependencies.**
+
+**After learning more about it via the documentation and it’s pkgdown website, I would like you to attempt to install the following three R packages using this newer method: “broom”, “cytoMEM”, “DillonHammill/CytoExploreR”.**
+
+**Take screenshots, and in a new quarto markdown document, describe how the installation process differed from what you saw for install.packages(), install() and install_github().**
+
+First we have to install the pak package.
+
+```{r}
+install.packages("pak")
+library(pak)
+```
+
+The site lists how to install from CRAN or Bioconductor using pak::pkg_install("name") and for GitHub packages as pak::pkg_install("username/packagename").
+
+
+```{r}
+# broom is a CRAN package so should be installed with. 
+pkg_install("broom")
+# cytoMEM is a bioconductor package, and can be installed with the same code as for CRAN.
+pkg_install("cytoMEM")
+# for the GitHub package you can also use the pkg_install() function.
+pkg_install("DillonHammill/CytoExploreR") # it showed an error when trying for the first time that it cannot install dependencies
+```
+
+It took a while to show that it started the installation, unlike when using the other installation methods. However, the output is very clean and a lot clearer than for the other installation methods. Once it gets downloading, it is very fast. 
